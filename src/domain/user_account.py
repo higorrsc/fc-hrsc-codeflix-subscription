@@ -1,7 +1,7 @@
 from pydantic import EmailStr
 
-from src.entity import Entity
-from src.value_objects import ValueObject
+from src.domain._shared.entity import Entity
+from src.domain._shared.value_objects import ValueObject
 
 
 class Address(ValueObject):

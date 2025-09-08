@@ -1,5 +1,5 @@
-from src.entity import Entity
-from src.value_objects import MonetaryValue
+from src.domain._shared.entity import Entity
+from src.domain._shared.value_objects import MonetaryValue
 
 
 class Plan(Entity):

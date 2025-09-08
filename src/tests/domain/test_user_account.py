@@ -1,7 +1,11 @@
-from src.user_account import Address, UserAccount
+from src.domain.user_account import Address, UserAccount
 
 
 def test_create_valid_user_account():
+    """
+    Test creating a valid user account.
+    """
+
     user_account = UserAccount(
         iam_user_id="1234567890123",
         name="John Doe",
