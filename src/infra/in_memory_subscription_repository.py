@@ -39,3 +39,13 @@ class InMemorySubscriptionRepository:
             )
 
         self._subscriptions.append(subscription)
+
+    def update(self, subscription: Subscription):
+        """
+        Update a subscription.
+        """
+
+        for i, s in enumerate(self._subscriptions):
+            if s.id == subscription.id:
+                self._subscriptions[i] = subscription
+                break
