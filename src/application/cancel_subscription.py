@@ -35,3 +35,4 @@ class CancelSubscriptionUseCase:
             raise SubscriptionNotFoundError("Subscription not found")
 
         subscription.cancel()
+        self._repository.update(subscription)
