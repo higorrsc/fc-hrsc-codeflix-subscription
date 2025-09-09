@@ -1,0 +1,5 @@
+dateutils==0.6.12
+email-validator==2.3.0
+ipython==9.5.0
+pydantic==2.11.7
+pytest==8.4.2
