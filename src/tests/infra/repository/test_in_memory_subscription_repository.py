@@ -4,7 +4,9 @@ import pytest
 
 from src.application.exceptions import SubscriptionAlreadyExistsError
 from src.domain.subscription import Subscription, SubscriptionStatus
-from src.infra.in_memory_subscription_repository import InMemorySubscriptionRepository
+from src.infra.repository.in_memory_subscription_repository import (
+    InMemorySubscriptionRepository,
+)
 
 
 class TestInMemorySubscriptionRepository:
