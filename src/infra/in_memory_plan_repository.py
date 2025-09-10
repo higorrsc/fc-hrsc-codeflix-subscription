@@ -1,4 +1,5 @@
 from typing import List, Optional
+from uuid import UUID
 
 from src.domain.plan import Plan
 
@@ -35,3 +36,14 @@ class InMemoryPlanRepository:
             raise ValueError(f"Plan with name '{plan.name}' already exists.")
 
         self.plans.append(plan)
+
+    def get_by_id(self, plan_id: UUID):
+        """
+        Get a plan by its ID.
+        """
+
+        for plan in self.plans:
+            if plan.id == plan_id:
+                return plan
+
+        return None
