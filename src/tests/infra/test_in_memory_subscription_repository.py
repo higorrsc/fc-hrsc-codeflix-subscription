@@ -80,7 +80,7 @@ class TestInMemorySubscriptionRepository:
         )
 
         repo = InMemorySubscriptionRepository([subscription1, subscription2])
-        found_subscription = repo.get_by_user_and_plan(
+        found_subscription = repo.get_by_user_id_and_plan_id(
             user_id=subscription1.user_id,
             plan_id=subscription1.plan_id,
         )
@@ -92,7 +92,7 @@ class TestInMemorySubscriptionRepository:
         """
 
         repo = InMemorySubscriptionRepository()
-        found_subscription = repo.get_by_user_and_plan(
+        found_subscription = repo.get_by_user_id_and_plan_id(
             user_id=uuid4(),
             plan_id=uuid4(),
         )
@@ -109,7 +109,7 @@ class TestInMemorySubscriptionRepository:
         )
 
         repo = InMemorySubscriptionRepository([subscription1])
-        found_subscription = repo.get_by_user(
+        found_subscription = repo.get_by_user_id(
             user_id=subscription1.user_id,
         )
         assert found_subscription is not None
@@ -120,7 +120,7 @@ class TestInMemorySubscriptionRepository:
         """
 
         repo = InMemorySubscriptionRepository()
-        found_subscription = repo.get_by_user(user_id=uuid4())
+        found_subscription = repo.get_by_user_id(user_id=uuid4())
         assert found_subscription is None
 
     def test_get_subscription_by_plan(self):
@@ -134,7 +134,7 @@ class TestInMemorySubscriptionRepository:
         )
 
         repo = InMemorySubscriptionRepository([subscription1])
-        found_subscription = repo.get_by_plan(
+        found_subscription = repo.get_by_plan_id(
             plan_id=subscription1.plan_id,
         )
         assert found_subscription is not None
@@ -145,5 +145,5 @@ class TestInMemorySubscriptionRepository:
         """
 
         repo = InMemorySubscriptionRepository()
-        found_subscription = repo.get_by_plan(plan_id=uuid4())
+        found_subscription = repo.get_by_plan_id(plan_id=uuid4())
         assert found_subscription is None

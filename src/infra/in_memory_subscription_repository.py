@@ -50,7 +50,7 @@ class InMemorySubscriptionRepository:
                 self._subscriptions[i] = subscription
                 break
 
-    def get_by_user_and_plan(
+    def get_by_user_id_and_plan_id(
         self,
         user_id: UUID,
         plan_id: UUID,
@@ -65,7 +65,7 @@ class InMemorySubscriptionRepository:
 
         return None
 
-    def get_by_user(self, user_id: UUID) -> Optional[Subscription]:
+    def get_by_user_id(self, user_id: UUID) -> Optional[Subscription]:
         """
         Get all subscriptions by user ID.
         """
@@ -76,7 +76,7 @@ class InMemorySubscriptionRepository:
 
         return None
 
-    def get_by_plan(self, plan_id: UUID) -> Optional[Subscription]:
+    def get_by_plan_id(self, plan_id: UUID) -> Optional[Subscription]:
         """
         Get all subscriptions by plan ID.
         """
