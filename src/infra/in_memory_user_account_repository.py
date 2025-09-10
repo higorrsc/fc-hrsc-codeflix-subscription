@@ -1,4 +1,5 @@
 from typing import List, Optional
+from uuid import UUID
 
 from src.domain.user_account import UserAccount
 
@@ -21,3 +22,14 @@ class InMemoryUserAccountRepository:
         """
 
         self._user_accounts.append(user_account)
+
+    def get_by_id(self, user_id: UUID) -> Optional[UserAccount]:
+        """
+        Get a user account by its ID.
+        """
+
+        for user_account in self._user_accounts:
+            if user_account.id == user_id:
+                return user_account
+
+        return None
