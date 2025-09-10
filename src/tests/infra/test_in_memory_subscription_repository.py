@@ -63,3 +63,87 @@ class TestInMemorySubscriptionRepository:
             match=f"Subscription with id '{subscription1.id}' already exists.",
         ):
             repo.save(subscription2)
+
+    def test_get_subscription_by_user_and_plan(self):
+        """
+        Test getting a subscription by user ID and plan ID.
+        """
+
+        subscription1 = Subscription.create_regular(
+            user_id=uuid4(),
+            plan_id=uuid4(),
+        )
+
+        subscription2 = Subscription.create_regular(
+            user_id=uuid4(),
+            plan_id=uuid4(),
+        )
+
+        repo = InMemorySubscriptionRepository([subscription1, subscription2])
+        found_subscription = repo.get_by_user_and_plan(
+            user_id=subscription1.user_id,
+            plan_id=subscription1.plan_id,
+        )
+        assert found_subscription is not None
+
+    def test_subscription_not_found_by_user_and_plan(self):
+        """
+        Test getting a subscription that does not exist by user ID and plan ID.
+        """
+
+        repo = InMemorySubscriptionRepository()
+        found_subscription = repo.get_by_user_and_plan(
+            user_id=uuid4(),
+            plan_id=uuid4(),
+        )
+        assert found_subscription is None
+
+    def test_get_subscription_by_user(self):
+        """
+        Test getting subscription by user ID.
+        """
+
+        subscription1 = Subscription.create_regular(
+            user_id=uuid4(),
+            plan_id=uuid4(),
+        )
+
+        repo = InMemorySubscriptionRepository([subscription1])
+        found_subscription = repo.get_by_user(
+            user_id=subscription1.user_id,
+        )
+        assert found_subscription is not None
+
+    def test_subscription_not_found_by_user(self):
+        """
+        Test getting a subscription that does not exist by user ID.
+        """
+
+        repo = InMemorySubscriptionRepository()
+        found_subscription = repo.get_by_user(user_id=uuid4())
+        assert found_subscription is None
+
+    def test_get_subscription_by_plan(self):
+        """
+        Test getting subscription by plan ID.
+        """
+
+        subscription1 = Subscription.create_regular(
+            user_id=uuid4(),
+            plan_id=uuid4(),
+        )
+
+        repo = InMemorySubscriptionRepository([subscription1])
+        found_subscription = repo.get_by_plan(
+            plan_id=subscription1.plan_id,
+        )
+        assert found_subscription is not None
+
+    def test_subscription_not_found_by_plan(self):
+        """
+        Test getting a subscription that does not exist by plan ID.
+        """
+
+        repo = InMemorySubscriptionRepository()
+        found_subscription = repo.get_by_plan(plan_id=uuid4())
+        assert found_subscription is None
