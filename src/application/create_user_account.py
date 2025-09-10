@@ -5,7 +5,7 @@ from pydantic import BaseModel, EmailStr, SecretStr
 
 from src.application.exceptions import UserAlreadyExistsError
 from src.domain.user_account import Address, UserAccount
-from src.infra.auth_service import AuthService
+from src.infra.auth.auth_service import AuthService
 
 
 class CreateUserAccountInputDTO(BaseModel):
