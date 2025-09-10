@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from src.domain._shared.value_objects import Currency, MonetaryValue
 from src.domain.plan import Plan
 from src.infra.in_memory_plan_repository import InMemoryPlanRepository
@@ -105,3 +107,39 @@ class TestInMemoryPlanRepository:
             amount=199.90,  # type: ignore
             currency=Currency.BRL,
         )
+
+    def test_get_by_id(self):
+        """
+        Test getting a plan by its ID.
+        """
+
+        plan1 = Plan(
+            name="Premium",
+            price=MonetaryValue(
+                amount=99.90,  # type: ignore
+                currency=Currency.BRL,
+            ),
+        )
+
+        plan2 = Plan(
+            name="Premium",
+            price=MonetaryValue(
+                amount=109.90,  # type: ignore
+                currency=Currency.BRL,
+            ),
+        )
+
+        repo = InMemoryPlanRepository([plan1, plan2])
+        found_plan = repo.get_by_id(plan1.id)
+        assert found_plan is not None
+        assert found_plan.id == plan1.id
+        assert found_plan.name == plan1.name
+
+    def test_get_by_id_not_found(self):
+        """
+        Test getting a plan that does not exist.
+        """
+
+        repo = InMemoryPlanRepository()
+        found_plan = repo.get_by_id(uuid4())
+        assert found_plan is None
