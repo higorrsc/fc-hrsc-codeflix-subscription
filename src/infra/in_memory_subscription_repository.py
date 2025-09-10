@@ -49,3 +49,40 @@ class InMemorySubscriptionRepository:
             if s.id == subscription.id:
                 self._subscriptions[i] = subscription
                 break
+
+    def get_by_user_and_plan(
+        self,
+        user_id: UUID,
+        plan_id: UUID,
+    ) -> Optional[Subscription]:
+        """
+        Get a subscription by user ID and plan ID.
+        """
+
+        for subscription in self._subscriptions:
+            if subscription.user_id == user_id and subscription.plan_id == plan_id:
+                return subscription
+
+        return None
+
+    def get_by_user(self, user_id: UUID) -> Optional[Subscription]:
+        """
+        Get all subscriptions by user ID.
+        """
+
+        for subscription in self._subscriptions:
+            if subscription.user_id == user_id:
+                return subscription
+
+        return None
+
+    def get_by_plan(self, plan_id: UUID) -> Optional[Subscription]:
+        """
+        Get all subscriptions by plan ID.
+        """
+
+        for subscription in self._subscriptions:
+            if subscription.plan_id == plan_id:
+                return subscription
+
+        return None
