@@ -4,7 +4,7 @@ from uuid import uuid4
 import pytest
 from dateutil.relativedelta import relativedelta
 
-from src.domain.subscription import Subscription
+from src.domain.entity import Subscription
 
 
 class TestCreateSubscription:

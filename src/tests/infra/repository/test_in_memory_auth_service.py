@@ -1,4 +1,4 @@
-from src.infra.repository.in_memory_auth_service import InMemoryAuthService
+from src.infra.repository import InMemoryAuthService
 
 
 class TestInMemoryAuthService:

@@ -1,9 +1,7 @@
 from uuid import uuid4
 
-from src.domain.user_account import Address, UserAccount
-from src.infra.repository.in_memory_user_account_repository import (
-    InMemoryUserAccountRepository,
-)
+from src.domain.entity import Address, UserAccount
+from src.infra.repository import InMemoryUserAccountRepository
 
 
 class TestInMemoryUserAccountRepository:

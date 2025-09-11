@@ -1,12 +1,12 @@
-from src.application.create_plan import (
+from src.application.exceptions import DuplicatePlanError
+from src.application.use_case import (
     CreatePlanInputDTO,
     CreatePlanOutputDTO,
     CreatePlanUseCase,
 )
-from src.application.exceptions import DuplicatePlanError
-from src.domain._shared.value_objects import Currency, MonetaryValue
-from src.domain.plan import Plan
-from src.infra.in_memory_plan_repository import InMemoryPlanRepository
+from src.domain._shared import Currency, MonetaryValue
+from src.domain.entity import Plan
+from src.infra.repository import InMemoryPlanRepository
 
 
 class TestCreatePlan:

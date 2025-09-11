@@ -1,7 +1,7 @@
 from typing import List, Optional
 from uuid import UUID
 
-from src.domain.plan import Plan
+from src.domain.entity import Plan
 
 
 class InMemoryPlanRepository:

@@ -6,22 +6,16 @@ import pytest
 from src.application.exceptions import (
     PlanNotFoundError,
     SubscriptionConflictError,
-    UserDoesNotExistsError,
+    UserNotFoundError,
 )
-from src.application.subscribe_to_plan import (
-    SubscribeToPlanInputDTO,
-    SubscribeToPlanUseCase,
-)
-from src.domain._shared.value_objects import Currency, MonetaryValue
-from src.domain.plan import Plan
-from src.domain.subscription import Subscription
-from src.domain.user_account import Address, UserAccount
-from src.infra.payment.payment_gateway import Payment, PaymentGateway
-from src.infra.repository.in_memory_plan_repository import InMemoryPlanRepository
-from src.infra.repository.in_memory_subscription_repository import (
+from src.application.use_case import SubscribeToPlanInputDTO, SubscribeToPlanUseCase
+from src.domain._shared import Currency, MonetaryValue
+from src.domain.entity import Address, Plan, Subscription, UserAccount
+from src.infra.notification.notification_service import NotificationService
+from src.infra.payment import Payment, PaymentGateway
+from src.infra.repository import (
+    InMemoryPlanRepository,
     InMemorySubscriptionRepository,
-)
-from src.infra.repository.in_memory_user_account_repository import (
     InMemoryUserAccountRepository,
 )
 
@@ -148,6 +142,7 @@ class TestSubscribeToPlanUseCase:
         plan_repo = InMemoryPlanRepository(plans=[plan])
         subs_repo = InMemorySubscriptionRepository()
         payment_gateway = create_autospec(PaymentGateway)
+        notification_service = create_autospec(NotificationService)
         payment_gateway.process_payment.return_value = Payment(success=False)
 
         use_case = SubscribeToPlanUseCase(
@@ -155,7 +150,7 @@ class TestSubscribeToPlanUseCase:
             user_repository=user_repo,
             plan_repository=plan_repo,
             payment_gateway=payment_gateway,
-            notification_service=None,
+            notification_service=notification_service,
         )
         input_dto = SubscribeToPlanInputDTO(
             user_id=user_account.id,
@@ -202,7 +197,7 @@ class TestSubscribeToPlanUseCase:
         )
 
         with pytest.raises(
-            UserDoesNotExistsError,
+            UserNotFoundError,
             match="User does not exists",
         ):
             use_case.execute(input_dto=input_dto)

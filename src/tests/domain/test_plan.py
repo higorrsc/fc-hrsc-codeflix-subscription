@@ -1,5 +1,5 @@
 from src.domain._shared.value_objects import Currency, MonetaryValue
-from src.domain.plan import Plan
+from src.domain.entity import Plan
 
 
 def test_create_plan_with_name_and_price():

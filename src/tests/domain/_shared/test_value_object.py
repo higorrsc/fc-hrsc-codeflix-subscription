@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from src.value_objects import Currency, MonetaryValue
+from src.domain._shared import Currency, MonetaryValue
 
 
 def test_equals_compare_attributes():

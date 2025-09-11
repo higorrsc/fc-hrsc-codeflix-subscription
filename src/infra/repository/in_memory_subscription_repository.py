@@ -2,7 +2,7 @@ from typing import List, Optional
 from uuid import UUID
 
 from src.application.exceptions import SubscriptionAlreadyExistsError
-from src.domain.subscription import Subscription
+from src.domain.entity import Subscription
 
 
 class InMemorySubscriptionRepository:

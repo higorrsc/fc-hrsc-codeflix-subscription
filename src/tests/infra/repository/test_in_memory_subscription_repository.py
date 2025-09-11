@@ -3,10 +3,8 @@ from uuid import uuid4
 import pytest
 
 from src.application.exceptions import SubscriptionAlreadyExistsError
-from src.domain.subscription import Subscription, SubscriptionStatus
-from src.infra.repository.in_memory_subscription_repository import (
-    InMemorySubscriptionRepository,
-)
+from src.domain.entity import Subscription, SubscriptionStatus
+from src.infra.repository import InMemorySubscriptionRepository
 
 
 class TestInMemorySubscriptionRepository:

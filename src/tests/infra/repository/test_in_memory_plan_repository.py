@@ -1,8 +1,8 @@
 from uuid import uuid4
 
-from src.domain._shared.value_objects import Currency, MonetaryValue
-from src.domain.plan import Plan
-from src.infra.repository.in_memory_plan_repository import InMemoryPlanRepository
+from src.domain._shared import Currency, MonetaryValue
+from src.domain.entity import Plan
+from src.infra.repository import InMemoryPlanRepository
 
 
 class TestInMemoryPlanRepository:

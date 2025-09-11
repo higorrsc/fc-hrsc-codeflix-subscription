@@ -17,4 +17,4 @@ class NotificationService(ABC):
             recipient: Optional recipient identifier (email, phone, etc.)
         """
 
-        pass
+        raise NotImplementedError

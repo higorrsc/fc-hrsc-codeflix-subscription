@@ -4,7 +4,7 @@ from uuid import UUID
 
 from dateutil.relativedelta import relativedelta
 
-from src.domain._shared.entity import Entity
+from src.domain._shared import Entity
 
 
 class SubscriptionStatus(StrEnum):

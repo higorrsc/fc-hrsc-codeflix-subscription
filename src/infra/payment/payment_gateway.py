@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from src.domain._shared.value_objects import ValueObject
-from src.domain.user_account import Address
+from src.domain._shared import ValueObject
+from src.domain.entity import Address
 
 
 class Payment(ValueObject):

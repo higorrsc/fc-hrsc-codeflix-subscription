@@ -1,7 +1,7 @@
 from typing import List, Optional
 from uuid import UUID
 
-from src.domain.user_account import UserAccount
+from src.domain.entity import UserAccount
 
 
 class InMemoryUserAccountRepository:

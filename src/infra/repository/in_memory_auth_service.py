@@ -3,7 +3,7 @@ from uuid import uuid4
 
 from pydantic import EmailStr
 
-from src.infra.auth.auth_service import AuthService
+from src.infra.auth import AuthService
 
 
 class InMemoryAuthService(AuthService):

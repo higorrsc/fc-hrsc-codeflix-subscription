@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 from src.application.exceptions import DuplicatePlanError
 from src.domain._shared.value_objects import MonetaryValue
-from src.domain.plan import Plan
+from src.domain.entity import Plan
 
 
 class CreatePlanInputDTO(BaseModel):

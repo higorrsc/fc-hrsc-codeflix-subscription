@@ -3,18 +3,12 @@ from uuid import uuid4
 
 import pytest
 
-from src.application.renew_subscription import (
-    RenewSubscriptionInputDTO,
-    RenewSubscriptionUseCase,
-)
-from src.domain.subscription import Subscription
-from src.domain.user_account import Address, UserAccount
-from src.infra.notification.notification_service import NotificationService
-from src.infra.payment.payment_gateway import Payment, PaymentGateway
-from src.infra.repository.in_memory_subscription_repository import (
+from src.application.use_case import RenewSubscriptionInputDTO, RenewSubscriptionUseCase
+from src.domain.entity import Address, Subscription, UserAccount
+from src.infra.notification import NotificationService
+from src.infra.payment import Payment, PaymentGateway
+from src.infra.repository import (
     InMemorySubscriptionRepository,
-)
-from src.infra.repository.in_memory_user_account_repository import (
     InMemoryUserAccountRepository,
 )
 

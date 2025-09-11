@@ -5,9 +5,9 @@ from pydantic import BaseModel
 from src.application.exceptions import (
     PlanNotFoundError,
     SubscriptionConflictError,
-    UserDoesNotExistsError,
+    UserNotFoundError,
 )
-from src.domain.subscription import Subscription
+from src.domain.entity import Subscription
 
 
 class SubscribeToPlanInputDTO(BaseModel):
@@ -58,7 +58,7 @@ class SubscribeToPlanUseCase:
 
         user = self._user_repository.get_by_id(input_dto.user_id)
         if not user:
-            raise UserDoesNotExistsError("User does not exists")
+            raise UserNotFoundError("User does not exists")
 
         plan = self._plan_repository.get_by_id(input_dto.plan_id)
         if not plan:
@@ -80,7 +80,10 @@ class SubscribeToPlanUseCase:
                 plan_id=input_dto.plan_id,
             )
         else:
-            self._notification_service.notify("Payment failed")
+            self._notification_service.notify(
+                message="Payment failed",
+                recipient=user.email,
+            )
             subscription = Subscription.create_trial(
                 user_id=input_dto.user_id,
                 plan_id=input_dto.plan_id,

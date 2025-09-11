@@ -3,13 +3,13 @@ from uuid import uuid4
 
 import pytest
 
-from src.application.cancel_subscription import (
+from src.application.exceptions import SubscriptionNotFoundError
+from src.application.use_case import (
     CancelSubscriptionInputDTO,
     CancelSubscriptionUseCase,
 )
-from src.application.exceptions import SubscriptionNotFoundError
-from src.domain.subscription import Subscription
-from src.infra.in_memory_subscription_repository import InMemorySubscriptionRepository
+from src.domain.entity import Subscription
+from src.infra.repository import InMemorySubscriptionRepository
 
 valid_subscription = Subscription.create_regular(
     user_id=uuid.uuid4(),

@@ -4,7 +4,7 @@ from uuid import UUID
 from pydantic import BaseModel, EmailStr, SecretStr
 
 from src.application.exceptions import UserAlreadyExistsError
-from src.domain.user_account import Address, UserAccount
+from src.domain.entity import Address, UserAccount
 from src.infra.auth.auth_service import AuthService
 
 

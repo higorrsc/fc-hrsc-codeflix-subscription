@@ -2,14 +2,11 @@ from unittest.mock import create_autospec
 
 import pytest
 
-from src.application.create_user_account import (
-    CreateUserAccountInputDTO,
-    CreateUserAccountUseCase,
-)
 from src.application.exceptions import UserAlreadyExistsError
-from src.domain.user_account import Address
-from src.infra.auth.auth_service import AuthService
-from src.infra.in_memory_user_account_repository import InMemoryUserAccountRepository
+from src.application.use_case import CreateUserAccountInputDTO, CreateUserAccountUseCase
+from src.domain.entity import Address
+from src.infra.auth import AuthService
+from src.infra.repository import InMemoryUserAccountRepository
 
 account_input = CreateUserAccountInputDTO(
     name="John McLean",
