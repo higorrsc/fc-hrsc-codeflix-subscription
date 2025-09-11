@@ -1,10 +1,12 @@
+import uuid
 from abc import ABC, abstractmethod
 
-from src.domain._shared import ValueObject
+from pydantic import BaseModel, Field
+
 from src.domain.entity import Address
 
 
-class Payment(ValueObject):
+class Payment(BaseModel):
     """
     Model representing a payment.
 
@@ -13,6 +15,7 @@ class Payment(ValueObject):
     """
 
     success: bool
+    transaction_id: uuid.UUID = Field(default_factory=uuid.uuid4)
 
 
 class PaymentGateway(ABC):
