@@ -92,7 +92,7 @@ class TestCreatePlan:
             )
         )
 
-        plan = repo.find_by_name("Plus")
+        plan = repo.get_by_name("Plus")
         assert plan is not None
 
         assert output.id is not None

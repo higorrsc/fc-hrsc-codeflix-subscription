@@ -3,6 +3,7 @@ from uuid import UUID
 from pydantic import BaseModel
 
 from src.application.exceptions import SubscriptionNotFoundError
+from src.domain.repository import SubscriptionRepository
 
 
 class CancelSubscriptionInputDTO(BaseModel):
@@ -18,7 +19,7 @@ class CancelSubscriptionUseCase:
     Use case for canceling a subscription.
     """
 
-    def __init__(self, repository) -> None:
+    def __init__(self, repository: SubscriptionRepository) -> None:
         """
         Initialize the use case.
         """

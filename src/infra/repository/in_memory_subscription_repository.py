@@ -3,9 +3,10 @@ from uuid import UUID
 
 from src.application.exceptions import SubscriptionAlreadyExistsError
 from src.domain.entity import Subscription
+from src.domain.repository import SubscriptionRepository
 
 
-class InMemorySubscriptionRepository:
+class InMemorySubscriptionRepository(SubscriptionRepository):
     """
     In-memory repository for managing subscriptions.
     """

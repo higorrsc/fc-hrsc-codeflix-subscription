@@ -25,7 +25,7 @@ class TestInMemoryPlanRepository:
         )
         repo.save(plan)
 
-        found_plan = repo.find_by_name("Basic")
+        found_plan = repo.get_by_name("Basic")
         assert found_plan is not None
         assert found_plan.name == "Basic"
         assert found_plan.price == MonetaryValue(
@@ -39,7 +39,7 @@ class TestInMemoryPlanRepository:
         """
 
         repo = InMemoryPlanRepository()
-        found_plan = repo.find_by_name("NonExistentPlan")
+        found_plan = repo.get_by_name("NonExistentPlan")
         assert found_plan is None
 
     def test_save_duplicate_plan_name(self):
@@ -93,14 +93,14 @@ class TestInMemoryPlanRepository:
         ]
         repo = InMemoryPlanRepository(plans)
 
-        found_standard_plan = repo.find_by_name("Standard")
+        found_standard_plan = repo.get_by_name("Standard")
         assert found_standard_plan is not None
         assert found_standard_plan.name == "Standard"
         assert found_standard_plan.price == MonetaryValue(
             amount=59.90,  # type: ignore
             currency=Currency.BRL,
         )
-        found_enterprise_plan = repo.find_by_name("Enterprise")
+        found_enterprise_plan = repo.get_by_name("Enterprise")
         assert found_enterprise_plan is not None
         assert found_enterprise_plan.name == "Enterprise"
         assert found_enterprise_plan.price == MonetaryValue(

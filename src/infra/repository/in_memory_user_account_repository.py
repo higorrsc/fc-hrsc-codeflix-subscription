@@ -2,9 +2,10 @@ from typing import List, Optional
 from uuid import UUID
 
 from src.domain.entity import UserAccount
+from src.domain.repository import UserAccountRepository
 
 
-class InMemoryUserAccountRepository:
+class InMemoryUserAccountRepository(UserAccountRepository):
     """
     In-memory repository for managing user accounts.
     """

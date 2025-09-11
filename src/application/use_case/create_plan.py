@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from src.application.exceptions import DuplicatePlanError
 from src.domain._shared.value_objects import MonetaryValue
 from src.domain.entity import Plan
+from src.domain.repository import PlanRepository
 
 
 class CreatePlanInputDTO(BaseModel):
@@ -35,7 +36,7 @@ class CreatePlanUseCase:
     Use case for creating a plan.
     """
 
-    def __init__(self, repository) -> None:
+    def __init__(self, repository: PlanRepository) -> None:
         """
         Initialize the use case.
         """
@@ -47,7 +48,7 @@ class CreatePlanUseCase:
         Execute the use case.
         """
 
-        existing_plan = self._repository.find_by_name(input_dto.name)
+        existing_plan = self._repository.get_by_name(input_dto.name)
         if existing_plan:
             raise DuplicatePlanError(
                 f"Plan with name '{input_dto.name}' already exists."

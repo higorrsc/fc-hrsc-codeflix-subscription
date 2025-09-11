@@ -8,6 +8,13 @@ from src.application.exceptions import (
     UserNotFoundError,
 )
 from src.domain.entity import Subscription
+from src.domain.repository import (
+    PlanRepository,
+    SubscriptionRepository,
+    UserAccountRepository,
+)
+from src.infra.notification import NotificationService
+from src.infra.payment import PaymentGateway
 
 
 class SubscribeToPlanInputDTO(BaseModel):
@@ -35,11 +42,11 @@ class SubscribeToPlanUseCase:
 
     def __init__(
         self,
-        subscription_repository,
-        user_repository,
-        plan_repository,
-        payment_gateway,
-        notification_service,
+        subscription_repository: SubscriptionRepository,
+        user_repository: UserAccountRepository,
+        plan_repository: PlanRepository,
+        payment_gateway: PaymentGateway,
+        notification_service: NotificationService,
     ) -> None:
         """
         Initialize the use case.

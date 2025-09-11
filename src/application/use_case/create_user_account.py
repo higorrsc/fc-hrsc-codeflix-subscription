@@ -5,6 +5,7 @@ from pydantic import BaseModel, EmailStr, SecretStr
 
 from src.application.exceptions import UserAlreadyExistsError
 from src.domain.entity import Address, UserAccount
+from src.domain.repository.user_account import UserAccountRepository
 from src.infra.auth.auth_service import AuthService
 
 
@@ -39,7 +40,7 @@ class CreateUserAccountUseCase:
     Use case for creating a user account.
     """
 
-    def __init__(self, auth_service: AuthService, repository):
+    def __init__(self, auth_service: AuthService, repository: UserAccountRepository):
         """
         Initialize the use case.
         """

@@ -3,6 +3,10 @@ from uuid import UUID
 
 from pydantic import BaseModel
 
+from src.domain.repository import SubscriptionRepository, UserAccountRepository
+from src.infra.notification import NotificationService
+from src.infra.payment import PaymentGateway
+
 
 class RenewSubscriptionInputDTO(BaseModel):
     """
@@ -28,10 +32,10 @@ class RenewSubscriptionUseCase:
 
     def __init__(
         self,
-        subscription_repository,
-        user_account_repository,
-        payment_gateway,
-        notification_service,
+        subscription_repository: SubscriptionRepository,
+        user_account_repository: UserAccountRepository,
+        payment_gateway: PaymentGateway,
+        notification_service: NotificationService,
     ) -> None:
         """
         Initialize the use case.
@@ -63,7 +67,7 @@ class RenewSubscriptionUseCase:
 
         payment = self._payment_gateway.process_payment(
             payment_token=input_dto.payment_token,
-            billing_address=user_account.billing_address,
+            billing_address=user_account.billing_address,  # type: ignore
         )
 
         if payment.success:
@@ -71,7 +75,7 @@ class RenewSubscriptionUseCase:
         else:
             self._notification_service.notify(
                 message=f"Payment failed for subscription {input_dto.subscription_id}",
-                recipient=user_account.email,
+                recipient=user_account.email,  # type: ignore
             )
             if subscription.is_trial:
                 subscription.cancel()
