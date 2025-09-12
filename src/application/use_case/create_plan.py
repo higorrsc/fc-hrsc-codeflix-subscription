@@ -1,7 +1,7 @@
 from datetime import datetime
 from uuid import UUID
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from src.application.exceptions import DuplicatePlanError
 from src.domain._shared.value_objects import MonetaryValue
@@ -14,7 +14,7 @@ class CreatePlanInputDTO(BaseModel):
     Input DTO for creating a plan.
     """
 
-    name: str
+    name: str = Field(min_length=1)
     price: MonetaryValue
 
 
