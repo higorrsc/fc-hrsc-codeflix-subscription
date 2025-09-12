@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 
-from src.application.exceptions.plan import DuplicatePlanError
-from src.application.use_case.create_plan import CreatePlanInputDTO, CreatePlanOutputDTO
+from src.application.exceptions import DuplicatePlanError
+from src.application.use_case import CreatePlanInputDTO, CreatePlanOutputDTO
 from src.infra.api.dependencies import CreatePlanUseCaseDep
 
 router = APIRouter(prefix="/plans", tags=["plans"])
