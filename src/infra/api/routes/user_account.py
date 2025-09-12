@@ -1,5 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
+from src.application.exceptions.user_account import UserAlreadyExistsError
 from src.application.use_case import (
     CreateUserAccountInputDTO,
     CreateUserAccountOutputDTO,
@@ -17,5 +18,9 @@ def create_user_account(
     """
     Route to create a new userAccount.
     """
-
-    return use_case.execute(payload)
+    try:
+        return use_case.execute(payload)
+    except UserAlreadyExistsError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e)) from e
