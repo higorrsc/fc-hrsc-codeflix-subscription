@@ -1,4 +1,4 @@
-from src.infra.repository import InMemoryAuthService
+from src.infra.auth import InMemoryAuthService
 
 
 class TestInMemoryAuthService:
@@ -30,7 +30,7 @@ class TestInMemoryAuthService:
         """
 
         service = InMemoryAuthService()
-        user_id = service.create_user("newuser@example.com")
+        user_id = service.create_user("newuser@example.com", "password")
         assert isinstance(user_id, str)
         assert service.find_by_email("newuser@example.com") is not None
 
@@ -50,6 +50,6 @@ class TestInMemoryAuthService:
         """
 
         service = InMemoryAuthService()
-        service.create_user("createandfind@example.com")
+        service.create_user("createandfind@example.com", "password")
         found_user = service.find_by_email("createandfind@example.com")
         assert found_user == "createandfind@example.com"

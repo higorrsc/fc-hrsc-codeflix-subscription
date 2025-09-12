@@ -29,7 +29,7 @@ class InMemoryAuthService(AuthService):
 
         return None
 
-    def create_user(self, email: EmailStr) -> str:
+    def create_user(self, email: EmailStr, password: str) -> str:
         """
         Create a new user with the given email.
         """
