@@ -32,3 +32,19 @@ class Entity(BaseModel):
     is_active: bool = True
 
     model_config = ConfigDict(extra="forbid", validate_assignment=True)
+
+    def __eq__(self, other):
+        """
+        Test for equality between two entities.
+
+        Args:
+            other (Entity): The other entity to compare.
+
+        Returns:
+            bool: True if the entities are equal, False otherwise.
+        """
+
+        if not isinstance(other, self.__class__):
+            return False
+
+        return self.id == other.id
