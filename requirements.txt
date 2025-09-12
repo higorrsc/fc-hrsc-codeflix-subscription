@@ -1,6 +1,9 @@
 dateutils==0.6.12
 email-validator==2.3.0
+fastapi==0.116.1
+httpx==0.28.1
 ipython==9.5.0
 pydantic==2.11.7
 pytest==8.4.2
 sqlmodel==0.0.24
+uvicorn==0.35.0
