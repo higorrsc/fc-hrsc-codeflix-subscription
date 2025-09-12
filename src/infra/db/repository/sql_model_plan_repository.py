@@ -5,7 +5,7 @@ from sqlmodel import Session, select
 
 from src.domain.entity import Plan
 from src.domain.repository.plan import PlanRepository
-from src.infra.db.models.plan_model import PlanModel
+from src.infra.db.models import PlanModel
 
 
 class SQLModelPlanRepository(PlanRepository):

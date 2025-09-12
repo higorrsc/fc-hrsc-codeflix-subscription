@@ -1,3 +1,3 @@
-from .plan_model import PlanModel
-from .user_account import UserAccountModel
+from .plan import PlanModel
 from .subscription import SubscriptionModel
+from .user_account import UserAccountModel
