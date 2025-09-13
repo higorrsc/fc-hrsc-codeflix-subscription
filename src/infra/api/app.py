@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.concurrency import asynccontextmanager
 
-from src.infra.api.routes import PlansRouter, UserAccountRouter
+from src.infra.api.routes import PlansRouter, SubscriptionRouter, UserAccountRouter
 from src.infra.db import create_db_and_tables
 
 
@@ -19,6 +19,7 @@ app = FastAPI(title="Subscription Service API", lifespan=lifespan)
 
 app.include_router(PlansRouter)
 app.include_router(UserAccountRouter)
+app.include_router(SubscriptionRouter)
 
 if __name__ == "__main__":
     import uvicorn
