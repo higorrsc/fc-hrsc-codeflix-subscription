@@ -1,6 +1,5 @@
 from sqlmodel import Session, SQLModel, create_engine
 
-from .repository import SQLModelPlanRepository
 
 DATABASE_URL = "sqlite:///./subscription_service.db"
 engine = create_engine(DATABASE_URL)
@@ -24,7 +23,6 @@ def get_session():
 
 
 __all__ = [
-    "SQLModelPlanRepository",
     "create_db_and_tables",
     "get_session",
 ]
